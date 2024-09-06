@@ -104,7 +104,7 @@ code --install-extension ms-python.python
 code --install-extension ms-vscode.makefile-tools
 ```
 #### ROS base image
-The docker image used by the 'Remote Development Extension' is a customized docker image. It needs to be built only once buy running.
+The docker image used by the 'Remote Development Extension' is a customized docker image. It needs to be built only once buy running. If you have just installed Docker and encounter issues related to missing permissions, make sure that your user is part of the "docker"-group and reboot your system.
 
 ``` bash
 cd $MR_DIR
