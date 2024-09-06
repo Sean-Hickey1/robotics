@@ -1,4 +1,4 @@
-# Mobile Robotics Framework for WS2024
+# Project root for the [LVA 183.660 Mobile Robotics WS2024](https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr=183660&semester=2024W)
 
 You can place this projecte in your home folder under `$HOME/projects/mobile_robotics`. 
 
