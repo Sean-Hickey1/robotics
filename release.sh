@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# find the project parent folder related to the current file
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# define release folder
+SRC=$DIR
+# DES="${DIR//-private/-release}"
+DES="${DIR//-private/}"
+echo "Destination: $DES"
+if [ "$SRC" == "$DES" ]; then
+  echo "Source and destination are equal!!!"
+  exit 1  # Exit with status 1 (or any non-zero value to indicate an error)
+fi
+read -p "Do you want to proceed? (yes/no): " user_input
+# Convert input to lowercase to handle variations like Yes, YES, yEs, etc.
+user_input=$(echo "$user_input" | tr '[:upper:]' '[:lower:]')
+
+# Check if the input is "yes"
+if [ "$user_input" == "yes" ]; then
+  echo "Proceeding with the script..."
+  # Place the rest of your script here
+else
+  echo "Exiting the script."
+  exit 0  # Exit with a status code 0 (success)
+fi
+
+### The magic starts here 
+if [ ! -d "$DES" ]; then
+    echo "going to clone into $DES"
+    git clone git@git.auto.tuwien.ac.at:mr/mr2024_root.git $DES
+fi
+cd $DES
+git pull
+make clone
+
+echo $DES/ws02
+rsync -av --exclude={.git,__pycache__} $SRC/ws02/src/mr $DES/ws02/src/
+cd $DES/ws02/src/mr/
+#rm exercises/01
+rm -rf exercises/02 mr_viz mr_pf mr_ekf 
+rm -rf exercises/03 mr_ekf
+rm -rf exercises/04 mr_ekf
+rm -rf exercises/05
+rm -rf exercises/06
+cd $DES/ws02
+find . -type f -iname "*.*" -exec sed -i '/BEGIN SOLUTION/,/END SOLUTION/d'  {} +
+find . -type f -iname "CMakeLists.txt" -exec sed -i 's/'"USE_MY_CODE_UP_TO=100"'/'"USE_MY_CODE_UP_TO=0"'/g' {} +
+find . -type f -iname "*.hpp" -or -iname "*.cpp" -exec sed -i 's$'"your code start \*"'$your code start \*\/$g' {} +
+find . -type f -iname "*.hpp" -or -iname "*.cpp" -exec sed -i 's$'"\* your code end"'$\/\* your code end$g' {} +

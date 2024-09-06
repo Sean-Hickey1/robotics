@@ -1,0 +1,131 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "stage_ros2 cave",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws01/build/stage_ros2/stage_ros2",
+            "args": ["--ros-args", "-p", "world_file:=cave.world", "-p", "enable_gui:=true"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/ws01/src/stage_ros2/world/",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":  "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "mr_viz local_view",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_viz/lib/mr_viz/local_view",
+            "args": ["--ros-args", "-r", "scan:=base_scan"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "mr_pf with args",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_pf/lib/mr_pf/pf_node",
+            "args": ["--ros-args", "-r", "scan:=base_scan", "-p", "map_file:=${workspaceFolder}/ws02/install/mr_pf/share/mr_pf/config/maps/cave.png", "-p", "use_sim_time:=true"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "mr_pf with yaml",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_pf/lib/mr_pf/pf_node",
+            "args": ["--ros-args", "-r", "scan:=base_scan", "--params-file",  "${workspaceFolder}/ws02/install/mr_pf/share/mr_pf/config/particle_filter.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "mr_ekf cave with args",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_ekf/lib/mr_ekf/ekf_node",
+            "args": ["--ros-args", "-r", "scan:=base_scan", "-p", "map_file:=${workspaceFolder}/ws02/install/mr_ekf/share/mr_ekf/config/maps/cave.png", "-p", "map_linesegments_file:=${workspaceFolder}/ws02/install/mr_ekf/share/mr_ekf/config/maps/cave.yml", "-p", "use_sim_time:=true"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "mr_ekf line with args",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_ekf/lib/mr_ekf/ekf_node",
+            "args": ["--ros-args", "-r", "scan:=base_scan", "-p", "map_file:=${workspaceFolder}/ws02/install/mr_ekf/share/mr_ekf/config/maps/line.png", "-p", "map_linesegments_file:=${workspaceFolder}/ws02/install/mr_ekf/share/mr_ekf/config/maps/line.yml", "-p", "use_sim_time:=true"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "mr_pf for robot2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_pf/lib/mr_pf/pf_node",
+            "args": ["--ros-args", "-r", "__ns:=/robot_2", "-r", "scan:=base_scan1", "-p", "base_link:=robot_2/base_link", "-p", "map_file:=${workspaceFolder}/ws02/install/mr_pf/share/mr_pf/config/maps/cave.png"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "laserscan_linedetection",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws01/install/tuw_laserscan_features/lib/tuw_laserscan_features/linedetection",
+            "args": ["--ros-args", "-r", "scan:=base_scan"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "laserscan_features",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws01/install/tuw_laserscan_features/lib/tuw_laserscan_features/composed_node",
+            "args": ["--ros-args", "-r", "scan:=base_scan"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "feature_viz_linedetection",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws01/install/tuw_laserscan_features/lib/tuw_laserscan_features/feature_viz",
+            "args": ["--ros-args", "-r", "scan:=base_scan"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "Python: move",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/src/mr_move/mr_move/move.py",
+            "args": ["--ros-args", "-r", "scan:=base_scan"],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}",
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

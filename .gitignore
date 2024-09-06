@@ -1,0 +1,8 @@
+build
+install
+exercises
+log
+*.bak
+ws*
+demos-py
+env.local
