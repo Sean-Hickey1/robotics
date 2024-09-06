@@ -6,7 +6,7 @@ You can place this projecte in your home folder under `$HOME/projects/mobile_rob
 
 This document contains installation and setup instructions to detail the setup of the lecture environment. 
 
-The simulated robot is controlled by *ROS* (Robot Operating System, running on Linux) which runs inside a docker container in order to do the exercises. We tested the environment with the ROS version named "*jazzy*" on *Ubuntu 24.04* inside a docker contaioner on *Ubuntu 22.04,  24.04*. Other operating systems and version can be used at your own risk, without any support.
+The simulated robot is controlled by *ROS* (Robot Operating System, running on Linux) which runs inside a docker container in order to do the exercises. We tested the environment with the ROS version named "*jazzy*" on *Ubuntu 24.04* inside a docker container on *Ubuntu 22.04,  24.04*. Other operating systems and version can be used at your own risk, without any support.
 
 **Please prepare your system using one of the following options (A or B)**
 
@@ -25,7 +25,7 @@ We distinguish between
 * Workspace directory - defined by the ROS-Ecosystem to host nodes with sources and binaries. A single project can host multiply workspaces. (`~/projects/mobile_robotics/ws00`, `~/projects/mobile_robotics/ws01`, `~/projects/mobile_robotics/ws02`)
 
 ### Projects directory:
-Create a projects directory somewhere in your home directory on the docker host, e.g. in `~/projects`. I will be used to host your projects.
+Create a projects directory somewhere in your home directory on the docker host, e.g. in `~/projects`. It will be used to host your projects.
 
 #### .bashrc
 Prepare your _.bashrc_ so that your work space get sourced if you open a terminal in work space with an _env.sh_ file. All other ROS project sourcing commands in your _.bashrc_ should be removed! 
@@ -33,17 +33,17 @@ Prepare your _.bashrc_ so that your work space get sourced if you open a termina
 echo 'export PROJECTS_DIR=${HOME}/projects' >> ~/.bashrc           # defines your projects base
 echo "if [ -f "env.sh" ]; then source env.sh; fi" >> ~/.bashrc     # forces your bash to source env.sh if it exists
 source ~/.bashrc                                                   # reloads/sources your bash
-mkdir ${PROJECTS_DIR}                                              # crates the PROJECTS_DIR folder
+mkdir ${PROJECTS_DIR}                                              # creates the PROJECTS_DIR folder
 ```
 ### Project root
-The project root will host our project. The directory is allready as git repositories prepaird for you to clone.
+The project root will host our project. The directory structure is available as a git repository ready for you to clone.
 
 #### Clone mr2024_root
 
 Configure and add your SSH key to our gitlab server at [gitlab.tuwien.ac.at](gitlab.tuwien.ac.at). A tutorial is available at [https://docs.gitlab.com/ee/user/ssh.html](https://docs.gitlab.com/ee/user/ssh.html)
 We are also suggesting creating a GitHub account and to upload ssh keys as well [https://github.com/settings/keys].
 
-If the .bashrc is ready, we can source it and clone the project root.
+If the .bashrc is ready, we can source it and clone the project root into a directory named "mobile_robotics".
 ``` bash
 source ~/.bashrc
 cd ${PROJECTS_DIR} 
@@ -52,13 +52,13 @@ git clone ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/project.git mobile_robot
 ```
 #### env.local
 To host multiple mobile robotics projects, we introduced a `env.local` file. It configures your project and is used by `env.sh`
-It will be crated by the on the first project start and it should not be commited into any repository.
+It will be created when env.sh is sourced for the first time and it should not be commited into any repository.
 ``` bash
 cd ${PROJECTS_DIR}/mobile_robotics
 source ~/.bashrc
 ```
 
-On a nativ installation or inside your docker container you will see
+On a system with a native ROS installation or inside your docker container, you will see
 ``` 
 ** ROS2 jazzy initialized with  **
 /home/your_user/projects/mobile_robotics/ws00/install/setup.bash does not exist.
@@ -66,7 +66,7 @@ On a nativ installation or inside your docker container you will see
 /home/your_user/projects/mobile_robotics/ws02/install/setup.bash does not exist.
 ```
 
-On a a docker host without ROS
+On a docker host without ROS, you will instead see
 ``` 
 A 'env.local' will be created with the project name 'mobile_robotics-private'
 ROS_DISTRO 'jazzy' not installed!
@@ -77,14 +77,14 @@ ROS_DISTRO 'jazzy' not installed!
 We are using two workspaces, `ws01` and `ws02`. `ws01` holds existing stuff like our simulation environment. `ws02` holds your things. There is also a `ws00` but this one is only for people interested in details to ROS2 navigation.
 
 #### Clone 
-If the .bashrc and the project root is ready we can source it and clone the repos.
+If the .bashrc and the project root is ready we can source it and use the probided Makefile to clone the repos containing the packages we want to use into the correct workspaces.
 
 ``` bash
 cd $MR_DIR
 make clone
 ```
 ### VSCode:
-Install on your docker host maschine vscode with the Remote Development Extension. More details can be found under [Setup ROS 2 with VSCode and Docker](https://docs.ros.org/en/jazzy/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html)
+Install vscode with the Remote Development Extension on your docker host machine. More details can be found under [Setup ROS 2 with VSCode and Docker](https://docs.ros.org/en/jazzy/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html)
 ``` bash
 # Install VSCode on your docker host 
 sudo apt-get update
@@ -104,7 +104,7 @@ code --install-extension ms-python.python
 code --install-extension ms-vscode.makefile-tools
 ```
 #### ROS base image
-The docker image used by the 'Remote Development Extension' is a costomized docker image. It needs to be build only once buy running.
+The docker image used by the 'Remote Development Extension' is a customized docker image. It needs to be built only once buy running.
 
 ``` bash
 cd $MR_DIR
@@ -137,18 +137,18 @@ A other way to connect to the running docker container is by connecting to for a
 <img src="./res/screenshot_docker_attach_terminal.png" alt="terminal docker attach" width="300px">
 
 #### building ws01
-ws01 needs to be build only once but sourced every time you are using it. Building will take up to 5 minutes. The downloaded workspace does not include the simulation, but the Makefile in the project root holds all the links to clone the needed repositories.
+ws01 needs to be build only once but sourced every time you are using it. Building will take up to 5 minutes. The source code of the simulation environment is found in one of the repositories previously cloned via '''make clone'''.
 ``` bash
-# we assume that your are inside $MR_DIR and the workspace is sourced
+# we assume that you are inside $MR_DIR and the workspace is sourced
 make build-ws01
 ```
 
 ##### Test ws01
 
 ``` bash
-# we assume that your are inside $MR_DIR and the workspace is sourced
+# we assume that you are inside $MR_DIR and the workspace is sourced
 ros2 launch stage_ros2 stage.launch.py   # one robot
-ros2 launch stage_ros2 example.launch.py # multiple robots and rviz
+ros2 launch stage_ros2 demo.launch.py # multiple robots and rviz
 ```
 <img src="./res/screenshot_terminal_and_stage_cave.png" alt="terminal with stage cave" width="300px">
 
@@ -156,18 +156,18 @@ ros2 launch stage_ros2 example.launch.py # multiple robots and rviz
 
 ws02 is the workspace for your code. At the moment it is empty
 ``` bash
-# we assume that your are inside $MR_DIR and the workspace is sourced
+# we assume that you are inside $MR_DIR and the workspace is sourced
 make build-ws02
 ```
 
 ##### Test ws02
 You need two terminals
 ``` bash
-# we assume that your are inside $MR_DIR and the workspace is sourced
+# we assume that you are inside $MR_DIR and the workspace is sourced
 ros2 launch stage_ros2 stage.launch.py
 ```
 ``` bash
-# we assume that your are inside $MR_DIR and the workspace is sourced
+# we assume that you are inside $MR_DIR and the workspace is sourced
 ros2 run mr_move move_node.py --ros-args -r scan:=base_scan
 ```
 <img src="./res/screenshot_terminal_and_stage_cave_move.png" alt="terminal with stage cave and move" width="300px">
