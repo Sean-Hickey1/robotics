@@ -33,7 +33,7 @@ ws01/src/marker_msgs:
 		git clone -b ros2 git@github.com:tuw-robotics/marker_msgs.git $@
 
 ws02/src/mr:
-		git clone -b main git@git.auto.tuwien.ac.at:mr/mr2024.git $@
+		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws.git $@
 
 clone-ws00: \
 	ws00/src/teleop_tools \

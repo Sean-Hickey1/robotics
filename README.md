@@ -40,15 +40,15 @@ The project root will host our project. The directory is allready as git reposit
 
 #### Clone mr2024_root
 
-Configure and add your SSH key to our gitlab server at [git.auto.tuwien.ac.at](git.auto.tuwien.ac.at). A tutorial is available at [https://docs.gitlab.com/ee/user/ssh.html](https://docs.gitlab.com/ee/user/ssh.html)
+Configure and add your SSH key to our gitlab server at [gitlab.tuwien.ac.at](gitlab.tuwien.ac.at). A tutorial is available at [https://docs.gitlab.com/ee/user/ssh.html](https://docs.gitlab.com/ee/user/ssh.html)
 We are also suggesting creating a GitHub account and to upload ssh keys as well [https://github.com/settings/keys].
 
 If the .bashrc is ready, we can source it and clone the project root.
 ``` bash
 source ~/.bashrc
 cd ${PROJECTS_DIR} 
-git clone git@git.auto.tuwien.ac.at:mr/mr2024_root.git mobile_robotics
-# git clone https://git.auto.tuwien.ac.at/mr/mr2024_root.git mobile_robotics
+git clone ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/project.git mobile_robotics
+# git clone https://gitlab.tuwien.ac.at/lva-mr/2024/project.git mobile_robotics
 ```
 #### env.local
 To host multiple mobile robotics projects, we introduced a `env.local` file. It configures your project and is used by `env.sh`
@@ -246,7 +246,6 @@ Changing the entries in the Makefile
 ```
 sed -i 's/git@github.com:/https:\/\/github.com\//g' Makefile     # https -> git
 sed -i 's/https:\/\/github.com\//git@github.com:/g' Makefile  # git -> https
-sed -i 's/https:\/\/git.auto.tuwien.ac.at\//git@git.auto.tuwien.ac.at:/g' Makefile  # git -> https
 ```
 Changing existing repos
 ```
