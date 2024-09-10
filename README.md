@@ -228,7 +228,9 @@ After finishing the installation, use the GUI to search for and install the foll
 
 ### WSL
 Run powershell as an administrator and use the command below to install WSL with an image of the default distribution (which conveniently happens to be Ubuntu Jammy!).
-```wsl --install```
+```
+wsl --install
+```
 After successfully installing WSL, reboot your machine. 
 You should now see a terminal which is in the process of decompressing the downloaded files. After a while, it will ask you to set up a UNIX user account. Follow along with the instructions, and your Ubuntu environment is ready.
 
