@@ -5,6 +5,8 @@ endif
 
 PROJECT_DIR = $(shell pwd)
 SHELL = /usr/bin/env bash
+DOCKER_OWNER = tuwrobotics
+DOCKER_IMAGE_BASE=mr2024-base
 BUILD_TYPE = Debug
 include *.mk
 
@@ -25,7 +27,10 @@ docker-attach:
 	@docker exec -it -e TERM=xterm-256color -w ${PROJECT_DIR} ${PROJECT_NAME} bash
 
 docker-build-base:
-	@docker build --rm -t jazzy-base-dev  -f .devcontainer/Dockerfile-base .devcontainer/.
+	@docker build --rm -t ${DOCKER_OWNER}/${DOCKER_IMAGE_BASE}  -f .devcontainer/Dockerfile-base .devcontainer/.
+
+docker-push-base:
+	@docker push ${DOCKER_OWNER}/${DOCKER_IMAGE_BASE}
 
 docker-list-containers:
 	@docker ps -a  --format "table {{.Names}}\t{{.ID}}\t{{.Status}}"
@@ -37,7 +42,7 @@ docker-remove-images:
 	@docker image rm -f $$(docker images -a -q --filter "reference=*${PROJECT_NAME}*")
 	
 docker-remove-base:
-	@docker image rm -f $$(docker images -a -q --filter "reference=*jazzy-base-dev*")
+	@docker image rm -f $$(docker images -a -q --filter "reference=*${DOCKER_IMAGE_BASE}*")
 	
 docker-prune-none:
 	docker image prune

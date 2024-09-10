@@ -50,8 +50,8 @@ cd ${PROJECTS_DIR}
 git clone ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/project.git mobile_robotics
 # git clone https://gitlab.tuwien.ac.at/lva-mr/2024/project.git mobile_robotics
 ```
-#### env.local
-To host multiple mobile robotics projects, we introduced a `env.local` file. It configures your project and is used by `env.sh`
+#### .env.local
+To host multiple mobile robotics projects, we introduced a `.env.local` file. It configures your project and is used by `env.sh`
 It will be created when env.sh is sourced for the first time and it should not be commited into any repository.
 ``` bash
 cd ${PROJECTS_DIR}/mobile_robotics
@@ -102,13 +102,6 @@ code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.cmake-tools
 code --install-extension ms-python.python
 code --install-extension ms-vscode.makefile-tools
-```
-#### ROS base image
-The docker image used by the 'Remote Development Extension' is a customized docker image. It needs to be built only once buy running. If you have just installed Docker and encounter issues related to missing permissions, make sure that your user is part of the "docker"-group and reboot your system.
-
-``` bash
-cd $MR_DIR
-make docker-build-base
 ```
 #### Open and Build Development Container using vscode
 Open VSCode by runnig the following lines on the docker host

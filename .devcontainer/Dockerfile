@@ -1,4 +1,4 @@
-FROM jazzy-base-dev
+FROM tuwrobotics/mr2024-base
 ARG USERNAME=USERNAME
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
