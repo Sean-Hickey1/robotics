@@ -1,18 +1,27 @@
 # Project root for the [LVA 183.660 Mobile Robotics WS2024](https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr=183660&semester=2024W)
 
-You can place this projecte in your home folder under `$HOME/projects/mobile_robotics`. 
-
-# Setup and Install {-}
-
+You can place this project in your home folder under `$HOME/projects/mobile_robotics`.
 This document contains installation and setup instructions to detail the setup of the lecture environment. 
 
-The simulated robot is controlled by *ROS* (Robot Operating System, running on Linux) which runs inside a docker container in order to do the exercises. We tested the environment with the ROS version named "*jazzy*" on *Ubuntu 24.04* inside a docker container on *Ubuntu 22.04,  24.04*. Other operating systems and version can be used at your own risk, without any support.
+# System Architecture
 
-**Please prepare your system using one of the following options (A or B)**
+The simulated robot is controlled by *ROS2* (version "*jazzy*") which runs inside a docker container emulating *Ubuntu 24.04*.
+The docker container is hosted by an *Ubuntu 22.04* or *24.04* system.
+This Ubuntu System may run natively (for students willing to set up a machine with Ubuntu) or it may be part of the Windows Subsystem for Linux (as an option for students running Windows 10, build 19044 or newer).
+
+Other operating systems and versions can be used to host the docker container at your own risk, without any support.
+
+If you wish to use a native installation, follow one of the many guides available on the internet to prepare your system before following the instructions under **Installing Docker and ROS2**.
+
+If you instead want to use the Windows Subsystem for Linux, please follow the guide presented in **Addendum A** to prepare the subsystem before proceeding with **Installing Docker and ROS2**
+
+**Please prepare your system carfully**
+
 
 ---
 
-# Option A - Ubuntu with docker
+
+# Installing Docker and ROS2
 
 ## Docker
 1. First install docker on your system <br> Details can be found under [Install using the apt repository](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
@@ -165,57 +174,14 @@ ros2 launch stage_ros2 stage.launch.py
 ros2 run mr_move move_node.py --ros-args -r scan:=base_scan
 ```
 <img src="./res/screenshot_terminal_and_stage_cave_move.png" alt="terminal with stage cave and move" width="300px">
----
 
-# Option B - Virtual Box
-
-A Virtual Box installation of the framework with XUbuntu 24.04 is.
-Note: The images require about 25 GB of disk space.
-
-## Virtual Box:
-
-Download and install [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) for your host OS.
-
-## Download the Image:
-
-Download the prepared image [here](https://owncloud.tuwien.ac.at/index.php/s/HPwDF9lATzJZuZW)
-
-## Import the Image:
-
-Launch Oracle Virtual Box and import `mr-24.04.ova`.
-The RAM and CPU cores provided can be changed, but at least 4 GB RAM and 2 CPU cores provided for the guest OS are recommended.
-The RAM and CPU cores provided can be changes later as well.
-
-### Notes:
-
-- The user is `robot` with the password `robot431`.
-  The device name is `mr-vm`.
-- The image includes an IDE (VSCode) prepared for ROS.
 
 ---
 
-## Testing the environment:
 
-Now you should be able to start the robot simulation and to control the robot.
-
-### Start the simulation:
-
-``` bash
-source $MR_DIR/env.sh
-ros2 launch stage_ros2 stage.launch.py
-```
-
-### Drive the robot:
-
-``` bash
-source $MR_DIR/env.sh
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-```
-
----
-
-## Windows Subsystem for Linux
-If you are running either Windows 10 (Build 19044 or newer) or Windows 11, you can make use of the Windows Subsystem for Linux instead of a native Ubuntu installation. This part of the instructions is designed to get this subsystem set up, so you can follow along with part A.
+# Addendum 
+## A: Windows Subsystem for Linux
+If you are running either Windows 10 (Build 19044 or newer) or Windows 11, you can make use of the Windows Subsystem for Linux as a host for your docker container instead of a native Ubuntu installation. This part of the instructions is designed to get this subsystem set up, so you can follow along with Section .
 
 ### VSCode
 VSCode is the only piece of software which can not be installed inside the WSL. Luckily, tt will be made be available to the Linux subsystem automatically if it is installed under windows.
@@ -251,7 +217,8 @@ Some useful tips at the end:
 
 You are now ready to follow along with part A of these instructions. However, since you have already set up VSCode and all required extensions, you can skip the first code block of the VSCode chapter.
 
-## Helpful Tips:
+
+## B: Helpful Tips
 
 * Increase the `HISTSIZE` and `HISTFILESIZE` within the `.bashrc` by a factor of 10 (already done in the virtual box).
 * Use bash-completion using the Tab key! 
@@ -259,8 +226,8 @@ You are now ready to follow along with part A of these instructions. However, si
 * Checkout the program tmux 
 
 
-### Warnings
-####  The authenticity of host 'github.com (....)' can't be established
+## C: Common Issues
+###  The authenticity of host 'github.com (....)' can't be established
 ```
 Cloning into 'ws01/src/Stage'...
 The authenticity of host 'github.com (140.82.121.4)' can't be established.
@@ -285,7 +252,7 @@ find -path */.git/config -exec sed -i 's/https:\/\/github.com\//git@github.com:/
 ```
 
 
-## Not supported installations
+## D: Unsupported installations
 ### Docker
 We also prepared a developer docker container. But you have to build the base container with 
 `docker build --rm -t jazzy-base-dev  -f .devcontainer/Dockerfile-base .devcontainer/.` first, afterwards you can use the this description https://docs.ros.org/en/foxy/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html to setup your VSCode.
