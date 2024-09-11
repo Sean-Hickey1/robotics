@@ -38,8 +38,8 @@ echo $DES/ws02
 rsync -av --exclude={.git,__pycache__} $SRC/ws02/src/mr $DES/ws02/src/
 cd $DES/ws02/src/mr/
 #rm exercises/01
-rm -rf exercises/02 mr_viz mr_pf mr_ekf 
-rm -rf exercises/03 mr_ekf
+rm -rf exercises/02 mr_viz
+rm -rf exercises/03 mr_pf
 rm -rf exercises/04 mr_ekf
 rm -rf exercises/05
 rm -rf exercises/06
