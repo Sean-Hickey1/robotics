@@ -35,6 +35,10 @@ ws01/src/marker_msgs:
 ws02/src/mr:
 		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws.git $@
 
+clone-solutions:
+		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws-solution.git ws02/src/mr
+		
+
 clone-ws00: \
 	ws00/src/teleop_tools \
 	ws00/src/slam_toolbox \
