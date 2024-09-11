@@ -28,7 +28,7 @@ fi
 ### The magic starts here 
 if [ ! -d "$DES" ]; then
     echo "going to clone into $DES"
-    git clone git@git.auto.tuwien.ac.at:mr/mr2024_root.git $DES
+    git clone ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/project.git $DES
 fi
 cd $DES
 git pull
@@ -36,6 +36,7 @@ make clone
 
 echo $DES/ws02
 rsync -av --exclude={.git,__pycache__} $SRC/ws02/src/mr $DES/ws02/src/
+rm -rf $DES/ws02/src/mr-students
 cd $DES/ws02/src/mr/
 #rm exercises/01
 rm -rf exercises/02 mr_viz
