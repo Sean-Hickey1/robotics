@@ -13,7 +13,7 @@ Other operating systems and versions can be used to host the docker container at
 
 If you wish to use a native installation, follow one of the many guides available on the internet to prepare your system before following the instructions under **Installing Docker and ROS2**.
 
-If you instead want to use the Windows Subsystem for Linux, please follow the guide presented in **Addendum A** to prepare the subsystem before proceeding with **Installing Docker and ROS2**
+If you instead want to use the Windows Subsystem for Linux, please follow the guide presented in **Addendum A** to prepare the subsystem before proceeding with **Installing Docker and ROS2**.
 
 **Please prepare your system carfully**
 
@@ -212,7 +212,7 @@ sudo apt install make
 Thats all the setup required to prepare the WSL for this course.
 
 Some useful tips at the end:
-* To launch another WSL terminal, use the shortcut found in your start menu. Alternatively, you can use the Windows Terminal (https://apps.microsoft.com/detail/9n0dx20hk701) which provides convenient access to the Linux Subsystem.
+* To launch another WSL terminal, use the shortcut found in your start menu. Alternatively, you can use the [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701) which provides convenient access to the Linux Subsystem.
 * You can use the Windows file browser to view the files of the Linux subsystem if you want to get a quick overview outside of the terminal.
 
 You are now ready to follow along with part A of these instructions. However, since you have already set up VSCode and all required extensions, you can skip the first code block of the VSCode chapter.
@@ -253,10 +253,11 @@ find -path */.git/config -exec sed -i 's/https:\/\/github.com\//git@github.com:/
 
 
 ## D: Unsupported installations
-### Docker
-We also prepared a developer docker container. But you have to build the base container with 
-`docker build --rm -t jazzy-base-dev  -f .devcontainer/Dockerfile-base .devcontainer/.` first, afterwards you can use the this description https://docs.ros.org/en/foxy/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html to setup your VSCode.
-* Clone the project root and workspaces as dircibed in `Option A - Native Ubuntu`
-* Within VS Code search in Extensions (CTRL+SHIFT+X) for the “Remote Development” Extension and install it.
-* Replace the username `markus` in `.devcontainer/devcontainer.json`
-* Open and Build Development Container. Use `Ctrl+Shift+P` to open the command palette. Search for the command `Dev Containers: (Re-)build and Reopen in Container` and execute it. This will build your development docker container for your. It will take a while.
+### Running ROS natively without Docker
+If you do not want to work with the provided Docker Container, you can install all required packages natively on your *Ubuntu 24.04* system.
+First, you will have to install ROS2 *jazzy*, a guide can be found [here](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) (make sure to pick the bare-bones 'ros-jazzy-ros-base'-package).
+
+Then, take a look at "Dockerfile-base" located in this repository. This file is contains the instructions Docker requires to download all other required packages. Luckily, it is human-readable, so you can manually install the listed packages by executing the listed commands in the terminal.
+Make sure to remove `RUN` from every command, preface them with `sudo` instead and substitute all occurences of `$ROS_DISTRO` with `jazzy`.
+
+Finally, install VSCode and the required extensions.
