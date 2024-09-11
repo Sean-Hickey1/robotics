@@ -81,7 +81,8 @@ If the .bashrc and the project root is ready we can source it and use the probid
 
 ``` bash
 cd $MR_DIR
-make clone
+make clone-ws00
+make clone-ws01
 ```
 ### VSCode:
 Install vscode with the Remote Development Extension on your docker host machine. More details can be found under [Setup ROS 2 with VSCode and Docker](https://docs.ros.org/en/jazzy/How-To-Guides/Setup-ROS-2-with-VSCode-and-Docker-Container.html). Note that this codeblock can be skipped if you are using the WSL and have installed VSCode on Windows.
