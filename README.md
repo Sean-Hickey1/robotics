@@ -258,6 +258,6 @@ If you do not want to work with the provided Docker Container, you can install a
 First, you will have to install ROS2 *jazzy*, a guide can be found [here](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html) (make sure to pick the bare-bones 'ros-jazzy-ros-base'-package).
 
 Then, take a look at "Dockerfile-base" located in this repository. This file is contains the instructions Docker requires to download all other required packages. Luckily, it is human-readable, so you can manually install the listed packages by executing the listed commands in the terminal.
-Make sure to remove` RUN` from every command, preface them with `sudo` instead and substitute all occurences of `$ROS_DISTRO` with `jazzy`.
+Make sure to remove `RUN` from every command, preface them with `sudo` instead and substitute all occurences of `$ROS_DISTRO` with `jazzy`.
 
 Finally, install VSCode and the required extensions.
