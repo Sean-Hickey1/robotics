@@ -105,6 +105,8 @@
         "*/build": true,
         "*/log": true,
         "**/.gitignore": true
+        ".env.local": true
+        "core.*": true
     }
     
 }
