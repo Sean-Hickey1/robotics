@@ -41,7 +41,8 @@
     ],
     "mounts": [
        "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind,consistency=cached",
-       "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached"
+       "source=/dev/dri,target=/dev/dri,type=bind,consistency=cached",
+       "source=${localWorkspaceFolder}/.devcontainer/bash_history,target=${localEnv:HOME}/.bash_history,type=bind"
     ],
     "postCreateCommand": "printf '\n   ****   Welcome to your ${localWorkspaceFolderBasename} container   ****\n\n\n'"
 }

@@ -5,4 +5,5 @@ log
 *.bak
 ws*
 demos-py
-env.local
+.env.local
+core.*

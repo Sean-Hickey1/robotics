@@ -74,15 +74,6 @@
         "kind": "build",
         "isDefault": true,
       },
-      "problemMatcher": [
-        {
-          "base": "$gcc",
-          "fileLocation": [
-            "relative",
-            "${workspaceRoot}/ws00/build/stage_ros2"
-          ]
-        },
-      ],
       "promptOnClose": true
     }
   ]

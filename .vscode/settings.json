@@ -92,7 +92,13 @@
         "valarray": "cpp",
         "cfloat": "cpp",
         "ranges": "cpp",
-        "*.txx": "cpp"
+        "*.txx": "cpp",
+        "charconv": "cpp",
+        "expected": "cpp",
+        "source_location": "cpp",
+        "format": "cpp",
+        "span": "cpp",
+        "stdfloat": "cpp"
     },
     "files.exclude": {
         "*/install": true,

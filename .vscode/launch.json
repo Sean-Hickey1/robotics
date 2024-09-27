@@ -38,6 +38,14 @@
             "cwd": "${workspaceFolder}",
         },
         {
+            "name": "mr_monitor monitor",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/ws02/install/mr_monitor/lib/mr_monitor/monitor",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+        },
+        {
             "name": "mr_pf with args",
             "type": "cppdbg",
             "request": "launch",
