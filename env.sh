@@ -11,6 +11,9 @@ if [ ! -f $PWD/.env.local ]; then
 fi
 source $PWD/.env.local
 
+#crate a persistent bash_history
+[ ! -f $PWD/.devcontainer/bash_history ] && touch $PWD/.devcontainer/bash_history
+
 
 export ROS_DISTRO=jazzy
 export PROJECT_DIR=${MR_DIR}
