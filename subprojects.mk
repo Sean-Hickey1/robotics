@@ -36,7 +36,7 @@ ws02/src/mr:
 		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws.git $@
 
 clone-solutions:
-		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws-solution.git ws02/src/mr
+		git clone -b main ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024-solution/ws-solution.git ws02/src/mr
 		git clone -b devel ssh://git@gitlab.tuwien.ac.at:822/lva-mr/2024/ws.git ws02/src/mr-students
 		touch ws02/src/mr-students/COLCON_IGNORE
 		
