@@ -11,12 +11,11 @@ if [ ! -f $PWD/.env.local ]; then
 fi
 source $PWD/.env.local
 
-#crate a persistent bash_history
-[ ! -f $PWD/.devcontainer/bash_history ] && touch $PWD/.devcontainer/bash_history
-
-
 export ROS_DISTRO=jazzy
 export PROJECT_DIR=${MR_DIR}
+
+#crate a persistent bash_history
+[ ! -f ${PROJECT_DIR}/.devcontainer/bash_history ] && touch ${PROJECT_DIR}/.devcontainer/bash_history
 
 if [ ! -f /opt/ros/$ROS_DISTRO/setup.bash ]; then
     echo "ROS_DISTRO '$ROS_DISTRO' not installed!"
