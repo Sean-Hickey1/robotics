@@ -238,17 +238,17 @@ make: *** Waiting for unfinished jobs....
 make: *** wait: No child processes.  Stop.
 ```
 __Solution__
-Change to https or upload your SSL key on github!
+Change to https or upload your SSL key on gitlab!
 
 Changing the entries in the Makefile
 ```
-sed -i 's/git@github.com:/https:\/\/github.com\//g' Makefile  # https -> git
-sed -i 's/https:\/\/github.com\//git@github.com:/g' Makefile  # git -> https
+sed -i 's/ssh:\/\/git@gitlab.tuwien.ac.at:822\//https:\/\/gitlab.tuwien.ac.at\//g' subprojects.mk  # key -> https
+sed -i 's/https:\/\/gitlab.tuwien.ac.at\//ssh:\/\/git@gitlab.tuwien.ac.at:822\//g' subprojects.mk  # https -> key
 ```
 Changing existing repos
 ```
-find -path */.git/config -exec sed -i 's/git@github.com:/https:\/\/github.com\//g' {} +
-find -path */.git/config -exec sed -i 's/https:\/\/github.com\//git@github.com:/g' {} +
+find -path */.git/config -exec sed -i 's/ssh:\/\/git@gitlab.tuwien.ac.at:822\//https:\/\/gitlab.tuwien.ac.at\//g' {} + # key -> https
+find -path */.git/config -exec sed -i 's/https:\/\/gitlab.tuwien.ac.at\//ssh:\/\/git@gitlab.tuwien.ac.at:822\//g' {} + # https -> key
 ```
 
 
