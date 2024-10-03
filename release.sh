@@ -45,3 +45,8 @@ rm -rf exercises/04 mr_ekf
 rm -rf exercises/05
 rm -rf exercises/06
 cd $DES/ws02
+find . -type f -iname "*.*" -exec sed -i '/BEGIN SOLUTION/,/END SOLUTION/d'  {} +
+find . -type f -iname "CMakeLists.txt" -exec sed -i 's/'"USE_MY_CODE_UP_TO=100"'/'"USE_MY_CODE_UP_TO=0"'/g' {} +
+find . -type f -iname "*.hpp" -or -iname "*.cpp" -exec sed -i 's$'"your code start \*"'$your code start \*\/$g' {} +
+find . -type f -iname "*.hpp" -or -iname "*.cpp" -exec sed -i 's$'"\* your code end"'$\/\* your code end$g' {} +
+
