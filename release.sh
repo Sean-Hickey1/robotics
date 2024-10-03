@@ -39,7 +39,7 @@ rsync -av --exclude={.git,__pycache__} $SRC/ws02/src/mr $DES/ws02/src/
 rm -rf $DES/ws02/src/mr-students
 cd $DES/ws02/src/mr/
 #rm exercises/01
-#rm -rf exercises/02 mr_viz
+rm -rf exercises/02 mr_viz
 rm -rf exercises/03 mr_pf
 rm -rf exercises/04 mr_ekf
 rm -rf exercises/05
