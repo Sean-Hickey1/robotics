@@ -237,8 +237,8 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? ^Cmake: ***
 make: *** Waiting for unfinished jobs....
 make: *** wait: No child processes.  Stop.
 ```
-__Solution__
-Change to https or upload your SSL key on gitlab!
+__Solution:__
+Change to https or upload your SSL key on github (or gitlab, should you get a similar error when cloning from there)!
 
 Changing the entries in the Makefile
 ```
@@ -251,6 +251,17 @@ find -path */.git/config -exec sed -i 's/ssh:\/\/git@gitlab.tuwien.ac.at:822\//h
 find -path */.git/config -exec sed -i 's/https:\/\/gitlab.tuwien.ac.at\//ssh:\/\/git@gitlab.tuwien.ac.at:822\//g' {} + # https -> key
 ```
 
+
+###  Failure to build a workspace due to CMake error
+Should you be unable to build a package due to missing dependencies, the build process of the entire workspace will be aborted.
+<img src="./res/screenshot_build_fail_no_container.png" alt="build failure" width="300px">
+
+__Solution:__
+Make sure you have started the Docker container and that VSCode or the terminal which you are currently using is connected to the container.
+
+
+### Issues running docker on WSL
+Some students have reported issues when running docker on the WSL. Specifics are detailed in the [TUWEL discussion forum](https://tuwel.tuwien.ac.at/mod/forum/discuss.php?d=447782).
 
 ## D: Unsupported installations
 ### Running ROS natively without Docker

@@ -33,7 +33,7 @@
   ],
   "tasks": [
     {
-      "label": "launche example.launch.py",
+      "label": "launch example.launch.py",
       "type": "shell",
       "command": "source ${workspaceFolder}/env.sh; ros2 launch stage_ros2 example.launch.py",
     },
@@ -52,7 +52,7 @@
     },
     {
       "label": "colcon pkgs",
-      "detail": "builds tuw_geometry using colcon",
+      "detail": "builds a specified package using colcon",
       "type": "shell",
       "command": "cd ..; source env.sh; cd -; colcon build --packages-select ${input:pkgs} --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug",
       "options": {
