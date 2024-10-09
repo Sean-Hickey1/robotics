@@ -1,0 +1,13 @@
+name: mr2024
+dependencies:
+  - numpy
+  - scipy
+  - pandas
+  - jupyterlab
+  - matplotlib
+  - ipympl
+  - nodejs
+  - ipympl
+  - ipywidgets
+  - jupyterlab_widgets
+  - sympy
